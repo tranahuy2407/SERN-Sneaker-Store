@@ -1,5 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../db/db'); 
+const Brand = require('./brand');
+
 
 const Product = sequelize.define('Product', {
   id: {
@@ -38,6 +40,11 @@ const Product = sequelize.define('Product', {
   discounted_price: {
     type: DataTypes.DOUBLE,
     allowNull: false,
+  },
+  discounted_percent: { 
+    type: DataTypes.FLOAT,
+    allowNull: true, 
+    defaultValue: 0.0, 
   },
   images: {
     type: DataTypes.TEXT,
