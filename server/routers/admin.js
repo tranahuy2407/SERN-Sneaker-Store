@@ -2,14 +2,14 @@ const express = require("express");
 const adminRouter = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { Admin } = require('../models');
+const { Admin , Product } = require('../models');
 const admin = require("../middleware/admin")
 
 require("dotenv").config();
 adminRouter.use(express.json());
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// Đăng nhập Admin
+// Đăng nhập Admin  
 adminRouter.post("/login", async (req, res) => {
     const { email, password } = req.body;
   
@@ -79,6 +79,49 @@ adminRouter.post("/login", async (req, res) => {
     }
   });
   
+  // Tạo mới sản phẩm
+adminRouter.post('/products', admin, async (req, res) => {
+  try {
+    const product = await Product.create(req.body);
+    res.status(201).json({ success: true, data: product });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Failed to create product', error: error.message });
+  }
+});
+
+// Cập nhật sản phẩm
+adminRouter.put('/products/:id', admin, async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [updated] = await Product.update(req.body, { where: { id } });
+    if (updated) {
+      const updatedProduct = await Product.findByPk(id);
+      res.status(200).json({ success: true, data: updatedProduct });
+    } else {
+      res.status(404).json({ success: false, message: 'Product not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Failed to update product', error: error.message });
+  }
+});
+
+// Xóa sản phẩm
+adminRouter.delete('/products/:id', admin, async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleted = await Product.destroy({ where: { id } });
+    if (deleted) {
+      res.status(200).json({ success: true, message: 'Product deleted successfully' });
+    } else {
+      res.status(404).json({ success: false, message: 'Product not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Failed to delete product', error: error.message });
+  }
+});
 
 
 module.exports = adminRouter;

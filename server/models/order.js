@@ -20,8 +20,20 @@ const Order = sequelize.define(
       type: DataTypes.STRING(50),
       allowNull: false,
     },
-    address: {
-      type: DataTypes.TEXT,
+    address_line: {
+      type: DataTypes.STRING(255),  
+      allowNull: false,
+    },
+    ward: {
+      type: DataTypes.STRING(100), 
+      allowNull: false,
+    },
+    district: {
+      type: DataTypes.STRING(100),  
+      allowNull: false,
+    },
+    province: {
+      type: DataTypes.STRING(100),  
       allowNull: false,
     },
     phone: {
@@ -31,6 +43,10 @@ const Order = sequelize.define(
     email: {
       type: DataTypes.STRING(50),
       allowNull: false,
+    },
+    payment_method: {
+      type: DataTypes.ENUM("Tiền mặt", "Chuyển khoản", "Thẻ tín dụng"),
+      allowNull: true, 
     },
     status: {
       type: DataTypes.ENUM(
@@ -42,6 +58,11 @@ const Order = sequelize.define(
       ),
       allowNull: false,
       defaultValue: "Đang xử lý",
+    },
+    ordercode: {
+      type: DataTypes.STRING(8),
+      allowNull: false,
+      unique: true, 
     },
     created_at: {
       type: DataTypes.DATE,
@@ -55,7 +76,7 @@ const Order = sequelize.define(
     },
   },
   {
-    tableName: "orders", 
+    tableName: "orders",
     timestamps: false,
   }
 );
