@@ -9,7 +9,7 @@ const News = require('./new');
 const Admin = require('./admin');
 const Review = require('./review');
 const Promotion = require('./promotion');
-const Invoice = require('./invoice');
+const Invoice = require('./invoie');
 const ShippingCost = require('./shipping_cost');
 
 // Thiết lập quan hệ cho brand
