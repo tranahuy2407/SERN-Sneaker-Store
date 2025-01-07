@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { fetchLatestProducts } from "../services/lastestProduct";
+import { fetchLatestProducts } from "../services/product";
 
 export const ShopContext = createContext();
 
@@ -32,9 +32,7 @@ const ShopContextProvider = (props) => {
   };
 
   return (
-    <ShopContext.Provider value={value}>
-      {props.children}
-    </ShopContext.Provider>
+    <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
   );
 };
 
