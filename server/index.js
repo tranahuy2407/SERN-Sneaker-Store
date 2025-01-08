@@ -7,6 +7,7 @@ const adminRouter = require('./routers/admin');
 const brandRouter = require('./routers/brand');
 const categoryRouter = require('./routers/category');
 const orderRouter = require('./routers/order');
+const shippingcostRouter = require('./routers/shippingcost');
 const app = express();
 
 
@@ -20,6 +21,7 @@ app.use('/admin', adminRouter);
 app.use('/admin', brandRouter);
 app.use('/admin', categoryRouter);
 app.use('/order', orderRouter);
+app.use('/api', shippingcostRouter);
 
 const port = 5000;
 app.listen(port, () => {
