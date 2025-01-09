@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { fetchLatestProducts } from "../services/product";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const ShopContext = createContext();
 
@@ -12,7 +13,8 @@ const ShopContextProvider = (props) => {
   const [search, setSearch] = useState('');
   const [showSearch, setShowSearch] = useState(false)
   const [cartItems, setCartItems] = useState({});
- 
+  const navigate = useNavigate();
+
   const addToCart = async (itemId, size) => {
     if(!size){
       toast.error('Vui lòng chọn size giày!');
@@ -110,7 +112,8 @@ const ShopContextProvider = (props) => {
     addToCart, 
     getCartCount,
     updateQuantity,
-    getCartAmount
+    getCartAmount,
+    navigate
 
   };
 

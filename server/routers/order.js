@@ -1,6 +1,7 @@
 const express = require("express");
 const { Order, OrderDetail, Product } = require("../models");
 const orderRouter = express.Router();
+
 const generateOrderCode = async () => {
   const randomCode = `DH${Math.floor(1000 + Math.random() * 9000)}`;
   const existingOrder = await Order.findOne({ where: { ordercode: randomCode } });

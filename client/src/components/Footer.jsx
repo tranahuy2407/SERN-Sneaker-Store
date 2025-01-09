@@ -22,7 +22,7 @@ const Footer = () => {
             <div>
                 <p className='text-xl font-medium mb-5'>LIÊN HỆ</p>
                 <ul className='flex flex-col gap-1 text-gray-600'>
-                    <li>+84-343-899-504</li>
+                    <li>+84-012-345-678</li>
                     <li>contact@shoesmaker.com</li>
                 </ul>
 
