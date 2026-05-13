@@ -16,7 +16,7 @@ const ShippingCost = require('./shipping_cost');
 Brand.hasMany(Product, {
   foreignKey: {
     name: 'brand_id',
-    allowNull: false, // Chặn dữ liệu không hợp lệ
+    allowNull: false, 
   },
   as: 'products',
 });

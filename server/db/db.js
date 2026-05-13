@@ -8,6 +8,7 @@ const sequelize = new Sequelize('sern_sneaker', 'root', '', {
 
 sequelize.sync({ force: false }) 
   .then(() => {
+
     console.log("Đồng bộ bảng thành công!");
   })
   .catch((error) => {
